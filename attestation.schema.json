@@ -1,0 +1,172 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+        "attestations": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/attestation"
+            }
+        }
+    },
+    "required": [
+        "attestations"
+    ],
+    "definitions": {
+        "issuerIdentity": {
+            "type": "object",
+            "properties": {
+                "issuer": {
+                    "type": "string"
+                },
+                "issuerSpecificID": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "issuer",
+                "issuerSpecificID"
+            ]
+        },
+        "attestation": {
+            "type": "object",
+            "properties": {
+                "claim": {
+                    "type": "integer"
+                },
+                "comment": {
+                    "type": "string"
+                },
+                "subject": {
+                    "$ref": "#/definitions/subject"
+                }
+            },
+            "allOf": [
+                { "$ref": "#/definitions/issuerIdentity" }
+            ],
+            "required": [
+                "claim",
+                "subject"
+            ]
+        },
+        "subject": {
+            "type": "object",
+            "anyOf": [
+                {
+                    "$ref": "#/definitions/pkgSubject"
+                },
+                {
+                    "$ref": "#/definitions/dependencySubject"
+                },
+                {
+                    "$ref": "#/definitions/flawSubject"
+                },
+                {
+                    "$ref": "#/definitions/attestationSubject"
+                }
+            ]
+        },
+        "pkgSubject": {
+            "type": "object",
+            "properties": {
+                "pkg": {
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "type": "string"
+                        },
+                        "range": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "name"
+                    ]
+                }
+            },
+            "required": [
+                "pkg"
+            ]
+        },
+        "dependencySubject": {
+            "type": "object",
+            "properties": {
+                "dependency": {
+                    "type": "object",
+                    "properties": {
+                        "dependent": {
+                            "$ref": "#/definitions/pkgReference"
+                        },
+                        "pkg": {
+                            "$ref": "#/definitions/pkgReference"
+                        }
+                    },
+                    "required": [
+                        "dependent",
+                        "pkg"
+                    ]
+                }
+            },
+            "required": [
+                "dependency"
+            ]
+        },
+        "flawSubject": {
+            "type": "object",
+            "properties": {
+                "flaw": {
+                    "type": "object",
+                    "properties": {
+                        "cwe": {
+                            "type": "string"
+                        },
+                        "cve": {
+                            "type": "string"
+                        },
+                        "ghsa": {
+                            "type": "string"
+                        },
+                        "url": {
+                            "type": "string"
+                        },
+                        "malicious": {
+                            "type": "boolean"
+                        }
+                    },
+                    "minProperties": 1
+                }
+            },
+            "required": [
+                "flaw"
+            ]
+        },
+        "attestationSubject": {
+            "type": "object",
+            "properties": {
+                "attestation": {
+                    "type": "object",
+                    "allOf": [
+                        { "$ref": "#/definitions/issuerIdentity" }
+                    ]
+                }
+            },
+            "required": [
+                "attestation"
+            ]
+        },
+        "pkgReference": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "range": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "name"
+            ]
+        }
+    }
+}
