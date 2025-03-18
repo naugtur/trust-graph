@@ -1,15 +1,15 @@
 {
   "name": "trust-graph",
   "version": "1.0.0",
-  "main": "drafting.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node --test"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "ajv": "^8.17.1"
+    "ajv": "^8.17.1",
+    "semver": "^7.7.1"
   }
 }

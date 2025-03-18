@@ -1,0 +1,213 @@
+exports[`attestation schema > rejects attestation missing both fields in flaw subject 1`] = `
+{
+  "errors": [
+    {
+      "instancePath": "/attestations/0/subject",
+      "schemaPath": "#/definitions/pkgSubject/required",
+      "keyword": "required",
+      "params": {
+        "missingProperty": "pkg"
+      },
+      "message": "must have required property 'pkg'"
+    },
+    {
+      "instancePath": "/attestations/0/subject",
+      "schemaPath": "#/required",
+      "keyword": "required",
+      "params": {
+        "missingProperty": "dependency"
+      },
+      "message": "must have required property 'dependency'"
+    },
+    {
+      "instancePath": "/attestations/0/subject/flaw",
+      "schemaPath": "#/definitions/flawSubject/properties/flaw/minProperties",
+      "keyword": "minProperties",
+      "params": {
+        "limit": 1
+      },
+      "message": "must NOT have fewer than 1 properties"
+    },
+    {
+      "instancePath": "/attestations/0/subject",
+      "schemaPath": "#/required",
+      "keyword": "required",
+      "params": {
+        "missingProperty": "attestation"
+      },
+      "message": "must have required property 'attestation'"
+    },
+    {
+      "instancePath": "/attestations/0/subject",
+      "schemaPath": "#/anyOf",
+      "keyword": "anyOf",
+      "params": {},
+      "message": "must match a schema in anyOf"
+    }
+  ]
+}
+`;
+
+exports[`attestation schema > rejects attestation missing fields in attestation subject 1`] = `
+{
+  "errors": [
+    {
+      "instancePath": "/attestations/0/subject",
+      "schemaPath": "#/definitions/pkgSubject/required",
+      "keyword": "required",
+      "params": {
+        "missingProperty": "pkg"
+      },
+      "message": "must have required property 'pkg'"
+    },
+    {
+      "instancePath": "/attestations/0/subject",
+      "schemaPath": "#/required",
+      "keyword": "required",
+      "params": {
+        "missingProperty": "dependency"
+      },
+      "message": "must have required property 'dependency'"
+    },
+    {
+      "instancePath": "/attestations/0/subject",
+      "schemaPath": "#/definitions/flawSubject/required",
+      "keyword": "required",
+      "params": {
+        "missingProperty": "flaw"
+      },
+      "message": "must have required property 'flaw'"
+    },
+    {
+      "instancePath": "/attestations/0/subject/attestation",
+      "schemaPath": "#/definitions/issuerIdentity/required",
+      "keyword": "required",
+      "params": {
+        "missingProperty": "issuerSpecificID"
+      },
+      "message": "must have required property 'issuerSpecificID'"
+    },
+    {
+      "instancePath": "/attestations/0/subject",
+      "schemaPath": "#/anyOf",
+      "keyword": "anyOf",
+      "params": {},
+      "message": "must match a schema in anyOf"
+    }
+  ]
+}
+`;
+
+exports[`attestation schema > rejects attestation missing issuerSpecificID in dependency subject 1`] = `
+{
+  "errors": [
+    {
+      "instancePath": "/attestations/0",
+      "schemaPath": "#/definitions/issuerIdentity/required",
+      "keyword": "required",
+      "params": {
+        "missingProperty": "issuerSpecificID"
+      },
+      "message": "must have required property 'issuerSpecificID'"
+    }
+  ]
+}
+`;
+
+exports[`attestation schema > rejects attestation missing pkg name in dependency subject 1`] = `
+{
+  "errors": [
+    {
+      "instancePath": "/attestations/0/subject",
+      "schemaPath": "#/definitions/pkgSubject/required",
+      "keyword": "required",
+      "params": {
+        "missingProperty": "pkg"
+      },
+      "message": "must have required property 'pkg'"
+    },
+    {
+      "instancePath": "/attestations/0/subject/dependency/pkg",
+      "schemaPath": "#/definitions/pkgReference/required",
+      "keyword": "required",
+      "params": {
+        "missingProperty": "name"
+      },
+      "message": "must have required property 'name'"
+    },
+    {
+      "instancePath": "/attestations/0/subject",
+      "schemaPath": "#/definitions/flawSubject/required",
+      "keyword": "required",
+      "params": {
+        "missingProperty": "flaw"
+      },
+      "message": "must have required property 'flaw'"
+    },
+    {
+      "instancePath": "/attestations/0/subject",
+      "schemaPath": "#/required",
+      "keyword": "required",
+      "params": {
+        "missingProperty": "attestation"
+      },
+      "message": "must have required property 'attestation'"
+    },
+    {
+      "instancePath": "/attestations/0/subject",
+      "schemaPath": "#/anyOf",
+      "keyword": "anyOf",
+      "params": {},
+      "message": "must match a schema in anyOf"
+    }
+  ]
+}
+`;
+
+exports[`attestation schema > rejects attestation without required fields 1`] = `
+{
+  "errors": [
+    {
+      "instancePath": "/attestations/0",
+      "schemaPath": "#/definitions/issuerIdentity/required",
+      "keyword": "required",
+      "params": {
+        "missingProperty": "issuerSpecificID"
+      },
+      "message": "must have required property 'issuerSpecificID'"
+    }
+  ]
+}
+`;
+
+exports[`attestation schema > rejects empty object 1`] = `
+{
+  "errors": [
+    {
+      "instancePath": "",
+      "schemaPath": "#/required",
+      "keyword": "required",
+      "params": {
+        "missingProperty": "attestations"
+      },
+      "message": "must have required property 'attestations'"
+    }
+  ]
+}
+`;
+
+exports[`attestation schema > rejects missing attestations array 1`] = `
+{
+  "errors": [
+    {
+      "instancePath": "",
+      "schemaPath": "#/required",
+      "keyword": "required",
+      "params": {
+        "missingProperty": "attestations"
+      },
+      "message": "must have required property 'attestations'"
+    }
+  ]
+}
+`;

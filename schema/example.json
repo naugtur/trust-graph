@@ -40,8 +40,24 @@
             "comment": "Disputing the attestation",
             "subject": {
                 "attestation": {
-                    "issuer":"@openssf/i_trust",
+                    "issuer": "@openssf/i_trust",
                     "issuerSpecificID": "sc-2023-05-15-001"
+                }
+            }
+        },
+        {
+            "issuer": "@express/i_trust",
+            "issuerSpecificID": "1",
+            "claim": -1,
+            "comment": "vulnerability in lodash as used by express is not affecting it",
+            "subject": {
+                "pkg": {
+                    "name": "lodash",
+                    "range": "3.4.1"
+                },
+                "flaw": {
+                    "ghsa": "GHSA-p6mc-m468-83gw",
+                    "url": "https://github.com/advisories/GHSA-p6mc-m468-83gw"
                 }
             }
         }

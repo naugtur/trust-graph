@@ -1,8 +1,7 @@
 const Ajv = require("ajv");
-const fs = require("fs");
 
 const schema = require("./attestation.schema.json");
-const exampleData = require("./example.json");
+const exampleData = require("../example.json");
 
 const ajv = new Ajv();
 
