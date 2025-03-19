@@ -1,0 +1,221 @@
+{
+  "@3th4n/i_trust": {
+    "score": 0.41666666666666663,
+    "via": [
+      "@naugtur/i_trust:0.3333333333333333",
+      "@naugtur/i_trust>@olivia/i_trust>@sam/i_trust:0.08333333333333333"
+    ]
+  },
+  "@alex/i_trust": {
+    "score": 0.1111111111111111,
+    "via": [
+      "@naugtur/i_trust>@chr15/i_trust>@k3v1n/i_trust:0.08333333333333333",
+      "@naugtur/i_trust>@olivia/i_trust>@n4t4l13/i_trust>@mike/i_trust:0.027777777777777776"
+    ]
+  },
+  "@attacker/i_trust": {
+    "score": 0.16666666666666666,
+    "via": [
+      "@naugtur/i_trust>@3th4n/i_trust:0.16666666666666666",
+      "@naugtur/i_trust>@3th4n/i_trust>@attacker/i_trust:X",
+      "@naugtur/i_trust>@3th4n/i_trust>@attacker/i_trust>@attacker1/i_trust:X",
+      "@naugtur/i_trust>@3th4n/i_trust>@attacker/i_trust>@attacker1/i_trust>@attacker2/i_trust:X",
+      "@naugtur/i_trust>@3th4n/i_trust>@attacker/i_trust>@attacker1/i_trust>@attacker2/i_trust>@attacker3/i_trust:X",
+      "@naugtur/i_trust>@3th4n/i_trust>@attacker/i_trust>@attacker1/i_trust>@attacker2/i_trust>@attacker3/i_trust>@attacker4/i_trust:X",
+      "@naugtur/i_trust>@3th4n/i_trust>@attacker/i_trust>@attacker1/i_trust>@attacker2/i_trust>@attacker3/i_trust>@attacker4/i_trust>@attacker5/i_trust:X",
+      "@naugtur/i_trust>@3th4n/i_trust>@attacker/i_trust>@attacker1/i_trust>@attacker2/i_trust>@attacker3/i_trust>@attacker4/i_trust>@attacker5/i_trust>@attacker6/i_trust:X",
+      "@naugtur/i_trust>@3th4n/i_trust>@attacker/i_trust>@attacker1/i_trust>@attacker2/i_trust>@attacker3/i_trust>@attacker4/i_trust>@attacker5/i_trust>@attacker6/i_trust>@attacker7/i_trust:X",
+      "@naugtur/i_trust>@3th4n/i_trust>@attacker/i_trust>@attacker1/i_trust>@attacker2/i_trust>@attacker3/i_trust>@attacker4/i_trust>@attacker5/i_trust>@attacker6/i_trust>@attacker7/i_trust>@attacker8/i_trust:X",
+      "@naugtur/i_trust>@3th4n/i_trust>@attacker/i_trust>@attacker1/i_trust>@attacker2/i_trust>@attacker3/i_trust>@attacker4/i_trust>@attacker5/i_trust>@attacker6/i_trust>@attacker7/i_trust>@attacker8/i_trust>@attacker9/i_trust:X",
+      "@naugtur/i_trust>@3th4n/i_trust>@attacker/i_trust>@attacker1/i_trust>@attacker2/i_trust>@attacker3/i_trust>@attacker4/i_trust>@attacker5/i_trust>@attacker6/i_trust>@attacker7/i_trust>@attacker8/i_trust>@attacker9/i_trust>@attacker10/i_trust:X"
+    ]
+  },
+  "@attacker1/i_trust": {
+    "score": 0.08333333333333333,
+    "via": [
+      "@naugtur/i_trust>@3th4n/i_trust>@attacker/i_trust:0.08333333333333333"
+    ]
+  },
+  "@attacker10/i_trust": {
+    "score": 0.00016276041666666666,
+    "via": [
+      "@naugtur/i_trust>@3th4n/i_trust>@attacker/i_trust>@attacker1/i_trust>@attacker2/i_trust>@attacker3/i_trust>@attacker4/i_trust>@attacker5/i_trust>@attacker6/i_trust>@attacker7/i_trust>@attacker8/i_trust>@attacker9/i_trust:0.00016276041666666666"
+    ]
+  },
+  "@attacker2/i_trust": {
+    "score": 0.041666666666666664,
+    "via": [
+      "@naugtur/i_trust>@3th4n/i_trust>@attacker/i_trust>@attacker1/i_trust:0.041666666666666664"
+    ]
+  },
+  "@attacker3/i_trust": {
+    "score": 0.020833333333333332,
+    "via": [
+      "@naugtur/i_trust>@3th4n/i_trust>@attacker/i_trust>@attacker1/i_trust>@attacker2/i_trust:0.020833333333333332"
+    ]
+  },
+  "@attacker4/i_trust": {
+    "score": 0.010416666666666666,
+    "via": [
+      "@naugtur/i_trust>@3th4n/i_trust>@attacker/i_trust>@attacker1/i_trust>@attacker2/i_trust>@attacker3/i_trust:0.010416666666666666"
+    ]
+  },
+  "@attacker5/i_trust": {
+    "score": 0.005208333333333333,
+    "via": [
+      "@naugtur/i_trust>@3th4n/i_trust>@attacker/i_trust>@attacker1/i_trust>@attacker2/i_trust>@attacker3/i_trust>@attacker4/i_trust:0.005208333333333333"
+    ]
+  },
+  "@attacker6/i_trust": {
+    "score": 0.0026041666666666665,
+    "via": [
+      "@naugtur/i_trust>@3th4n/i_trust>@attacker/i_trust>@attacker1/i_trust>@attacker2/i_trust>@attacker3/i_trust>@attacker4/i_trust>@attacker5/i_trust:0.0026041666666666665"
+    ]
+  },
+  "@attacker7/i_trust": {
+    "score": 0.0013020833333333333,
+    "via": [
+      "@naugtur/i_trust>@3th4n/i_trust>@attacker/i_trust>@attacker1/i_trust>@attacker2/i_trust>@attacker3/i_trust>@attacker4/i_trust>@attacker5/i_trust>@attacker6/i_trust:0.0013020833333333333"
+    ]
+  },
+  "@attacker8/i_trust": {
+    "score": 0.0006510416666666666,
+    "via": [
+      "@naugtur/i_trust>@3th4n/i_trust>@attacker/i_trust>@attacker1/i_trust>@attacker2/i_trust>@attacker3/i_trust>@attacker4/i_trust>@attacker5/i_trust>@attacker6/i_trust>@attacker7/i_trust:0.0006510416666666666"
+    ]
+  },
+  "@attacker9/i_trust": {
+    "score": 0.0003255208333333333,
+    "via": [
+      "@naugtur/i_trust>@3th4n/i_trust>@attacker/i_trust>@attacker1/i_trust>@attacker2/i_trust>@attacker3/i_trust>@attacker4/i_trust>@attacker5/i_trust>@attacker6/i_trust>@attacker7/i_trust>@attacker8/i_trust:0.0003255208333333333"
+    ]
+  },
+  "@chr15/i_trust": {
+    "score": 0.41666666666666663,
+    "via": [
+      "@naugtur/i_trust:0.3333333333333333",
+      "@naugtur/i_trust>@3th4n/i_trust>@d4v1d/i_trust:0.08333333333333333",
+      "@naugtur/i_trust>@chr15/i_trust>@zoe/i_trust>@lisa/i_trust:X"
+    ]
+  },
+  "@d4v1d/i_trust": {
+    "score": 0.20833333333333331,
+    "via": [
+      "@naugtur/i_trust>@3th4n/i_trust:0.16666666666666666",
+      "@naugtur/i_trust>@chr15/i_trust>@k3v1n/i_trust>@alex/i_trust:0.041666666666666664"
+    ]
+  },
+  "@emma/i_trust": {
+    "score": 0.1111111111111111,
+    "via": [
+      "@naugtur/i_trust>@chr15/i_trust>@k3v1n/i_trust:0.08333333333333333",
+      "@naugtur/i_trust>@olivia/i_trust>@n4t4l13/i_trust>@mike/i_trust:0.027777777777777776"
+    ]
+  },
+  "@john/i_trust": {
+    "assertions": {
+      "url": "https://raw.githubusercontent.com/naugtur/trust-graph/013ec2584e8b7c7e065c2f615cb87bb507c3a950/schema/example.json"
+    },
+    "score": 0.1111111111111111,
+    "via": [
+      "@naugtur/i_trust>@olivia/i_trust>@n4t4l13/i_trust:0.08333333333333333",
+      "@naugtur/i_trust>@olivia/i_trust>@sam/i_trust>@sarah/i_trust:0.027777777777777776"
+    ]
+  },
+  "@k3v1n/i_trust": {
+    "score": 0.20833333333333331,
+    "via": [
+      "@naugtur/i_trust>@chr15/i_trust:0.16666666666666666",
+      "@naugtur/i_trust>@chr15/i_trust>@zoe/i_trust>@tom/i_trust:0.041666666666666664"
+    ]
+  },
+  "@lisa/i_trust": {
+    "score": 0.125,
+    "via": [
+      "@naugtur/i_trust>@chr15/i_trust>@zoe/i_trust:0.08333333333333333",
+      "@naugtur/i_trust>@olivia/i_trust>@n4t4l13/i_trust>@john/i_trust:0.041666666666666664"
+    ]
+  },
+  "@mike/i_trust": {
+    "score": 0.1111111111111111,
+    "via": [
+      "@naugtur/i_trust>@olivia/i_trust>@n4t4l13/i_trust:0.08333333333333333",
+      "@naugtur/i_trust>@olivia/i_trust>@sam/i_trust>@sarah/i_trust:0.027777777777777776"
+    ]
+  },
+  "@n4t4l13/i_trust": {
+    "score": 0.20833333333333331,
+    "via": [
+      "@naugtur/i_trust>@olivia/i_trust:0.16666666666666666",
+      "@naugtur/i_trust>@chr15/i_trust>@zoe/i_trust>@tom/i_trust:0.041666666666666664"
+    ]
+  },
+  "@naugtur/i_trust": {
+    "score": 1,
+    "via": [
+      ":1"
+    ]
+  },
+  "@olivia/i_trust": {
+    "score": 0.4583333333333333,
+    "via": [
+      "@naugtur/i_trust:0.3333333333333333",
+      "@naugtur/i_trust>@3th4n/i_trust>@d4v1d/i_trust:0.08333333333333333",
+      "@naugtur/i_trust>@chr15/i_trust>@k3v1n/i_trust>@alex/i_trust:0.041666666666666664"
+    ]
+  },
+  "@openssf/i_trust": {
+    "score": 0.07638888888888888,
+    "via": [
+      "@naugtur/i_trust>@olivia/i_trust>@n4t4l13/i_trust>@mike/i_trust:0.027777777777777776",
+      "@naugtur/i_trust>@olivia/i_trust>@sam/i_trust>@sarah/i_trust>@socket/i_trust:0.027777777777777776",
+      "@naugtur/i_trust>@chr15/i_trust>@k3v1n/i_trust>@emma/i_trust>@rachel/i_trust>@snyk/i_trust:0.020833333333333332"
+    ]
+  },
+  "@rachel/i_trust": {
+    "score": 0.041666666666666664,
+    "via": [
+      "@naugtur/i_trust>@chr15/i_trust>@k3v1n/i_trust>@emma/i_trust:0.041666666666666664"
+    ]
+  },
+  "@sam/i_trust": {
+    "score": 0.20833333333333331,
+    "via": [
+      "@naugtur/i_trust>@olivia/i_trust:0.16666666666666666",
+      "@naugtur/i_trust>@chr15/i_trust>@zoe/i_trust>@lisa/i_trust:0.041666666666666664"
+    ]
+  },
+  "@sarah/i_trust": {
+    "score": 0.08333333333333333,
+    "via": [
+      "@naugtur/i_trust>@olivia/i_trust>@sam/i_trust:0.08333333333333333"
+    ]
+  },
+  "@snyk/i_trust": {
+    "score": 0.020833333333333332,
+    "via": [
+      "@naugtur/i_trust>@chr15/i_trust>@k3v1n/i_trust>@emma/i_trust>@rachel/i_trust:0.020833333333333332"
+    ]
+  },
+  "@socket/i_trust": {
+    "score": 0.06944444444444445,
+    "via": [
+      "@naugtur/i_trust>@olivia/i_trust>@sam/i_trust>@sarah/i_trust:0.027777777777777776",
+      "@naugtur/i_trust>@olivia/i_trust>@n4t4l13/i_trust>@john/i_trust:0.041666666666666664"
+    ]
+  },
+  "@tom/i_trust": {
+    "score": 0.125,
+    "via": [
+      "@naugtur/i_trust>@chr15/i_trust>@zoe/i_trust:0.08333333333333333",
+      "@naugtur/i_trust>@chr15/i_trust>@k3v1n/i_trust>@emma/i_trust:0.041666666666666664"
+    ]
+  },
+  "@zoe/i_trust": {
+    "score": 0.1875,
+    "via": [
+      "@naugtur/i_trust>@chr15/i_trust:0.16666666666666666",
+      "@naugtur/i_trust>@chr15/i_trust>@k3v1n/i_trust>@emma/i_trust>@rachel/i_trust:0.020833333333333332"
+    ]
+  }
+}

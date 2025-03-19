@@ -1,7 +1,7 @@
 const { execSync } = require("child_process");
-const { readFileSync } = require("fs");
+const { readFileSync, writeFileSync } = require("fs");
 const path = require("path");
-const stringify = require('json-stable-stringify');
+const stringify = require("json-stable-stringify");
 
 function getPackageJson(packageName) {
   try {
@@ -51,6 +51,8 @@ function computeTrust({
     if (!currentPath.includes(dep)) {
       result[dep].score += trustPerDep;
       result[dep].via.push(currentPath.join(">") + ":" + trustPerDep);
+    } else {
+      result[dep].via.push(currentPath.join(">") + ":X");
     }
 
     if (firstVisit) {
@@ -72,9 +74,9 @@ function computeTrust({
   return next;
 }
 
-function main() {
+function processTrustGraph(packageJsonPath = "package.json") {
   const packageJson = JSON.parse(
-    readFileSync(path.join(process.cwd(), "package.json"))
+    readFileSync(packageJsonPath, { encoding: "utf-8" })
   );
 
   const result = {};
@@ -85,8 +87,47 @@ function main() {
     const nextBatch = computeTrust(current);
     next.push(...nextBatch);
   }
+  return result;
+}
 
-  console.log(stringify(result, { space: 2 }));
+function scale(score) {
+  return Math.round(12 + 8 * Math.log10(1 + 60 * score));
+}
+
+function main() {
+  const result = processTrustGraph(path.join(process.cwd(), "package.json"));
+
+  writeFileSync("computed_trust.json", stringify(result, { space: 2 }));
+
+  const mermaid = ["graph TD"];
+  const nodeIds = Object.keys(result);
+  for (const [node, data] of Object.entries(result)) {
+    mermaid.push(
+      `  ${nodeIds.indexOf(node)}["**${data.score.toFixed(2)}**  ${node}"]`
+    );
+    for (const edge of data.via) {
+      const [path, value] = edge.split(":");
+      const source = path.split(">").slice(-1)[0];
+      if (source) {
+        if (value === "X") {
+          mermaid.push(`  ${nodeIds.indexOf(source)} -..->|X| ${nodeIds.indexOf(node)}`);
+        } else {
+          mermaid.push(
+            `  ${nodeIds.indexOf(source)} --->|${parseFloat(value).toFixed(
+              2
+            )}| ${nodeIds.indexOf(node)}`
+          );
+        }
+      }
+    }
+    mermaid.push(
+      `style ${nodeIds.indexOf(node)} font-size:${scale(data.score)}px;`
+    );
+  }
+  writeFileSync(
+    "computed_trust.md",
+    "\n```mermaid\n" + mermaid.join("\n") + "\n```"
+  );
 }
 
 main();
