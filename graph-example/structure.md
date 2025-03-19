@@ -3,7 +3,7 @@ graph TD
     naugtur --> olivia
     naugtur --> chr15
     naugtur --> 3th4n
-    3th4n --> rachel
+    3th4n --> attacker
     3th4n --> d4v1d
     zoe --> lisa
     zoe --> tom
@@ -39,4 +39,25 @@ graph TD
     sarah --> john
     socket --> openssf
     snyk --> openssf
+    attacker10 --> attacker
+    attacker9 --> attacker
+    attacker9 --> attacker10
+    attacker8 --> attacker
+    attacker8 --> attacker9
+    attacker7 --> attacker
+    attacker7 --> attacker8
+    attacker6 --> attacker
+    attacker6 --> attacker7
+    attacker5 --> attacker
+    attacker5 --> attacker6
+    attacker4 --> attacker
+    attacker4 --> attacker5
+    attacker3 --> attacker
+    attacker3 --> attacker4
+    attacker2 --> attacker
+    attacker2 --> attacker3
+    attacker1 --> attacker
+    attacker1 --> attacker2
+    attacker --> attacker
+    attacker --> attacker1
 ```

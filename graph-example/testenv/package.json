@@ -4,7 +4,11 @@
   "main": "index.js",
   "license": "ISC",
   "description": "",
+  "scripts": {
+    "query-assertions": "npm query"
+  },
   "dependencies": {
-    "@naugtur/i_trust": "latest"
+    "@naugtur/i_trust": "latest",
+    "not-really-a-package": "^1.0.0"
   }
 }

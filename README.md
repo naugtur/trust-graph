@@ -2,6 +2,16 @@
 
 A way to create a distributed network of trust on which opinions (assertions) can be shared and consumed.
 
+# Stuff to see here
+
+graph-example has tools to set up a local registry with a trust graph in it.
+graph-example/testenv is where we can fiddle with it
+
+going to graph-example/testenv you can npm install the trust graph and run `node ../../trust-computer` on it
+
+
+# Concepts and notes
+
 ## Entities
 
 ### Social graph of trust

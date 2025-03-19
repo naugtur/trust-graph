@@ -20,9 +20,9 @@ const markdown = "```mermaid\n" + mermaidGraph + "```\n";
 fs.writeFileSync("structure.md", markdown);
 
 const REGISTRY = "http://localhost:4873";
-const NPM_TOKEN = process.env.NPM_TOKEN;
 
 const VER = Math.floor(Date.now() / 10000) - 174237887;
+
 async function createAndPublishPackage(name, packageData) {
   const { dependencies, ...rest } = packageData;
   const packageJson = {
@@ -40,12 +40,11 @@ async function createAndPublishPackage(name, packageData) {
 
   try {
     const tarball = await createTarGzip([
-      { name: "package.json", data: JSON.stringify(packageJson, null, 2) },
+      { name: "package/package.json", data: JSON.stringify(packageJson, null, 2) },
     ]);
 
     const publishResult = await publish(packageJson, Buffer.from(tarball), {
       registry: REGISTRY,
-      // algorithms: [],
       // '//localhost:4873/:_authToken': process.env.NPM_TOKEN
     });
 

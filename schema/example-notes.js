@@ -1,5 +1,5 @@
 {
-    "attestations": [ //assertions
+    "assertions": [ //assertions
         {
             "issuer": "@openssf/i_trust",
             "issuerSpecificID": "sc-2023-05-15-001",
@@ -38,9 +38,9 @@
             "issuer": "@npmjs/i_trust",
             "issuerSpecificID": "npm-audit-2023-06-01-002",
             "claim": -1,
-            "comment": "Disputing the attestation",
+            "comment": "Disputing the assertion",
             "subject": {
-                "attestation": {
+                "assertion": {
                     "issuer": "@openssf/i_trust",
                     "issuerSpecificID": "sc-2023-05-15-001"
                 }

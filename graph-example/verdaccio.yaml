@@ -9,6 +9,7 @@ packages:
     publish: $all
   '**':
     proxy: npmjs
+    access: $all
 middlewares:
   audit:
     enabled: true
