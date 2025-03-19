@@ -87,11 +87,47 @@ suite("assertion-matcher", () => {
     assert.strictEqual(matches.length, 0);
   });
 
-  test("returns empty array for unknown subject type", async (t) => {
+  test("returns empty array for obviously irrelevant subject", async (t) => {
     const search = {
       unknown: {},
     };
     const matches = matchassertions(search, assertions);
     assert.strictEqual(matches.length, 0);
   });
+});
+
+test("assertion-matcher is future-proof", async (t) => {
+  const search = {
+    grumbleflop: {
+      name: "a",
+      range: "^1.0.0",
+    },
+  };
+  const matches = matchassertions(search, [
+    {
+      subject: {
+        pkg: {
+          name: "a",
+          range: "^1.0.0",
+        },
+      },
+      issuer: "b",
+      issuerSpecificID: "1",
+      claim: 1,
+    },
+    {
+      subject: {
+        grumbleflop: {
+          name: "a",
+          range: "1.1.1",
+        },
+      },
+      issuer: "c",
+      issuerSpecificID: "2",
+      claim: 1,
+    },
+  ]);
+  console.log(matches);
+  assert.strictEqual(matches.length, 1);
+  assert.strictEqual(matches[0].issuerSpecificID, "2");
 });
