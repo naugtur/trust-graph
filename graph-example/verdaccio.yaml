@@ -1,0 +1,17 @@
+storage: ./storage
+auth:
+uplinks:
+  npmjs:
+    url: https://registry.npmjs.org/
+packages:
+  '@*/i_trust':
+    access: $all
+    publish: $all
+  '**':
+    proxy: npmjs
+middlewares:
+  audit:
+    enabled: true
+publish:
+  allow_offline: true
+log: { type: stdout, format: pretty, level: http }

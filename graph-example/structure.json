@@ -1,0 +1,22 @@
+{
+    "@snyk/i_trust": { "dependencies": ["@openssf/i_trust"] },
+    "@openssf/i_trust": { "dependencies": [] },
+    "@socket/i_trust": { "dependencies": ["@openssf/i_trust"] },
+    "@sarah/i_trust": { "dependencies": ["@socket/i_trust", "@mike/i_trust", "@john/i_trust"] },
+    "@mike/i_trust": { "dependencies": ["@openssf/i_trust", "@emma/i_trust", "@alex/i_trust"] },
+    "@john/i_trust": { "dependencies": ["@socket/i_trust", "@lisa/i_trust"] },
+    "@emma/i_trust": { "dependencies": ["@tom/i_trust", "@rachel/i_trust"] },
+    "@alex/i_trust": { "dependencies": ["@d4v1d/i_trust", "@olivia/i_trust"] },
+    "@lisa/i_trust": { "dependencies": ["@chr15/i_trust", "@sam/i_trust"] },
+    "@tom/i_trust": { "dependencies": ["@n4t4l13/i_trust", "@k3v1n/i_trust"] },
+    "@rachel/i_trust": { "dependencies": ["@zoe/i_trust", "@snyk/i_trust"] },
+    "@d4v1d/i_trust": { "dependencies": ["@olivia/i_trust", "@chr15/i_trust"] },
+    "@olivia/i_trust": { "dependencies": ["@sam/i_trust", "@n4t4l13/i_trust"] },
+    "@chr15/i_trust": { "dependencies": ["@k3v1n/i_trust", "@zoe/i_trust"] },
+    "@sam/i_trust": { "dependencies": ["@3th4n/i_trust", "@sarah/i_trust"] },
+    "@n4t4l13/i_trust": { "dependencies": ["@mike/i_trust", "@john/i_trust"] },
+    "@k3v1n/i_trust": { "dependencies": ["@emma/i_trust", "@alex/i_trust"] },
+    "@zoe/i_trust": { "dependencies": ["@lisa/i_trust", "@tom/i_trust"] },
+    "@3th4n/i_trust": { "dependencies": ["@rachel/i_trust", "@d4v1d/i_trust"] },
+    "@naugtur/i_trust": { "dependencies": ["@olivia/i_trust", "@chr15/i_trust", "@3th4n/i_trust"] }
+}

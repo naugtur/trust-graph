@@ -2,15 +2,15 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "type": "object",
     "properties": {
-        "attestations": {
+        "assertions": {
             "type": "array",
             "items": {
-                "$ref": "#/definitions/attestation"
+                "$ref": "#/definitions/assertion"
             }
         }
     },
     "required": [
-        "attestations"
+        "assertions"
     ],
     "definitions": {
         "issuerIdentity": {
@@ -28,7 +28,7 @@
                 "issuerSpecificID"
             ]
         },
-        "attestation": {
+        "assertion": {
             "type": "object",
             "properties": {
                 "claim": {
@@ -62,7 +62,7 @@
                     "$ref": "#/definitions/flawSubject"
                 },
                 {
-                    "$ref": "#/definitions/attestationSubject"
+                    "$ref": "#/definitions/assertionSubject"
                 }
             ]
         },
@@ -140,10 +140,10 @@
                 "flaw"
             ]
         },
-        "attestationSubject": {
+        "assertionSubject": {
             "type": "object",
             "properties": {
-                "attestation": {
+                "assertion": {
                     "type": "object",
                     "allOf": [
                         { "$ref": "#/definitions/issuerIdentity" }
@@ -151,7 +151,7 @@
                 }
             },
             "required": [
-                "attestation"
+                "assertion"
             ]
         },
         "pkgReference": {

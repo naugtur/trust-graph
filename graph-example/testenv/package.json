@@ -1,0 +1,10 @@
+{
+  "name": "testenv",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@naugtur/i_trust": "latest"
+  }
+}

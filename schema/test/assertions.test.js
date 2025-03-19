@@ -1,7 +1,7 @@
 const { test, suite } = require("node:test");
 const Ajv = require("ajv");
 
-const schema = require("../attestation.schema.json");
+const schema = require("../assertion.schema.json");
 
 const ajv = new Ajv();
 const validate = ajv.compile(schema);
@@ -18,13 +18,16 @@ const testInvalid = (description, data) => {
 const testValid = (description, data) => {
   test(description, (t) => {
     const isValid = validate(data);
+    if(validate.errors) {
+      console.error(`\n----${description}-----\n`,validate.errors,"\n----\n");
+    }
     t.assert.ok(isValid, "expected successful validation");
   });
 };
 
-suite("attestation schema", () => {
+suite("assertion schema", () => {
   testValid("valid example", {
-    attestations: [
+    assertions: [
       {
         issuer: "@openssf/i_trust",
         issuerSpecificID: "sc-2023-05-15-001",
@@ -63,9 +66,9 @@ suite("attestation schema", () => {
         issuer: "@npmjs/i_trust",
         issuerSpecificID: "npm-audit-2023-06-01-002",
         claim: -1,
-        comment: "Disputing the attestation",
+        comment: "Disputing the assertion",
         subject: {
-          attestation: {
+          assertion: {
             issuer: "@openssf/i_trust",
             issuerSpecificID: "sc-2023-05-15-001",
           },
@@ -74,8 +77,8 @@ suite("attestation schema", () => {
     ],
   });
 
-  testValid("validates minimal valid attestation", {
-    attestations: [
+  testValid("validates minimal valid assertion", {
+    assertions: [
       {
         issuer: "test",
         issuerSpecificID: "1",
@@ -89,8 +92,8 @@ suite("attestation schema", () => {
     ],
   });
 
-  testValid("validates attestation with dependency subject", {
-    attestations: [
+  testValid("validates assertion with dependency subject", {
+    assertions: [
       {
         issuer: "test",
         issuerSpecificID: "1",
@@ -110,8 +113,8 @@ suite("attestation schema", () => {
     ],
   });
 
-  testValid("validates attestation with flaw subject", {
-    attestations: [
+  testValid("validates assertion with flaw subject", {
+    assertions: [
       {
         issuer: "test",
         issuerSpecificID: "1",
@@ -126,14 +129,14 @@ suite("attestation schema", () => {
     ],
   });
 
-  testValid("validates attestation with attestation subject", {
-    attestations: [
+  testValid("validates assertion with assertion subject", {
+    assertions: [
       {
         issuer: "test",
         issuerSpecificID: "1",
         claim: -1,
         subject: {
-          attestation: {
+          assertion: {
             issuer: "other-issuer",
             issuerSpecificID: "123",
           },
@@ -144,12 +147,12 @@ suite("attestation schema", () => {
 
   testInvalid("rejects empty object", {});
 
-  testInvalid("rejects missing attestations array", {
+  testInvalid("rejects missing assertions array", {
     something: [],
   });
 
-  testInvalid("rejects attestation without required fields", {
-    attestations: [
+  testInvalid("rejects assertion without required fields", {
+    assertions: [
       {
         issuer: "test",
         subject: {
@@ -162,9 +165,9 @@ suite("attestation schema", () => {
   });
 
   testInvalid(
-    "rejects attestation missing issuerSpecificID in dependency subject",
+    "rejects assertion missing issuerSpecificID in dependency subject",
     {
-      attestations: [
+      assertions: [
         {
           issuer: "@express/i_trust",
           claim: -1,
@@ -185,8 +188,8 @@ suite("attestation schema", () => {
     }
   );
 
-  testInvalid("rejects attestation missing pkg name in dependency subject", {
-    attestations: [
+  testInvalid("rejects assertion missing pkg name in dependency subject", {
+    assertions: [
       {
         issuer: "@express/i_trust",
         issuerSpecificID: "1",
@@ -205,8 +208,8 @@ suite("attestation schema", () => {
     ],
   });
 
-  testInvalid("rejects attestation missing both fields in flaw subject", {
-    attestations: [
+  testInvalid("rejects assertion missing both fields in flaw subject", {
+    assertions: [
       {
         issuer: "@express/i_trust",
         issuerSpecificID: "1",
@@ -218,14 +221,14 @@ suite("attestation schema", () => {
     ],
   });
 
-  testInvalid("rejects attestation missing fields in attestation subject", {
-    attestations: [
+  testInvalid("rejects assertion missing fields in assertion subject", {
+    assertions: [
       {
         issuer: "@npmjs/i_trust",
         issuerSpecificID: "123",
         claim: -1,
         subject: {
-          attestation: {
+          assertion: {
             issuer: "@openssf/i_trust",
           },
         },

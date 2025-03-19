@@ -1,0 +1,22 @@
+{
+  "name": "graph-example",
+  "version": "1.0.0",
+  "description": "````mermaid",
+  "main": "generate.js",
+  "scripts": {
+    "start": "verdaccio -c verdaccio.yaml",
+    "generate": "node generate.js",
+    "test": "cd testenv && npm i"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "libnpmpack": "^9.0.1",
+    "libnpmpublish": "^11.0.0",
+    "nanotar": "^0.2.0",
+    "npm-registry-fetch": "^18.0.2",
+    "pacote": "^21.0.0",
+    "verdaccio": "^6.0.5"
+  }
+}
