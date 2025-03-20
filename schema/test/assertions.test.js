@@ -31,8 +31,10 @@ suite("assertion schema", () => {
       {
         issuer: "@openssf/i_trust",
         issuerSpecificID: "sc-2023-05-15-001",
-        claim: 1,
-        comment: "Package has good security practices",
+        claim: {
+          type: "endorse",
+          comment: "Package has good security practices"
+        },
         subject: {
           pkg: {
             name: "express",
@@ -43,9 +45,10 @@ suite("assertion schema", () => {
       {
         issuer: "@express/i_trust",
         issuerSpecificID: "1",
-        claim: -1,
-        comment:
-          "vulnerability in lodash as used by express is not affecting it",
+        claim: {
+          type: "dispute",
+          comment: "vulnerability in lodash as used by express is not affecting it"
+        },
         subject: {
           dependency: {
             dependent: {
@@ -65,8 +68,10 @@ suite("assertion schema", () => {
       {
         issuer: "@npmjs/i_trust",
         issuerSpecificID: "npm-audit-2023-06-01-002",
-        claim: -1,
-        comment: "Disputing the assertion",
+        claim: {
+          type: "dispute",
+          comment: "Disputing the assertion"
+        },
         subject: {
           assertion: {
             issuer: "@openssf/i_trust",
@@ -82,7 +87,9 @@ suite("assertion schema", () => {
       {
         issuer: "test",
         issuerSpecificID: "1",
-        claim: 1,
+        claim: {
+          type: "endorse"
+        },
         subject: {
           pkg: {
             name: "test-package",
@@ -97,7 +104,9 @@ suite("assertion schema", () => {
       {
         issuer: "test",
         issuerSpecificID: "1",
-        claim: 1,
+        claim: {
+          type: "endorse"
+        },
         subject: {
           dependency: {
             dependent: {
@@ -118,7 +127,9 @@ suite("assertion schema", () => {
       {
         issuer: "test",
         issuerSpecificID: "1",
-        claim: -1,
+        claim: {
+          type: "dispute"
+        },
         subject: {
           flaw: {
             cve: "CVE-2023-1234",
@@ -134,7 +145,9 @@ suite("assertion schema", () => {
       {
         issuer: "test",
         issuerSpecificID: "1",
-        claim: -1,
+        claim: {
+          type: "dispute"
+        },
         subject: {
           assertion: {
             issuer: "other-issuer",
@@ -230,6 +243,60 @@ suite("assertion schema", () => {
         subject: {
           assertion: {
             issuer: "@openssf/i_trust",
+          },
+        },
+      },
+    ],
+  });
+
+  testInvalid("rejects claim with invalid type", {
+    assertions: [
+      {
+        issuer: "test",
+        issuerSpecificID: "1",
+        claim: {
+          type: "invalid-type"
+        },
+        subject: {
+          pkg: {
+            name: "test-package",
+          },
+        },
+      },
+    ],
+  });
+
+  testInvalid("rejects claim without type", {
+    assertions: [
+      {
+        issuer: "test",
+        issuerSpecificID: "1",
+        claim: {
+          comment: "Missing required type"
+        },
+        subject: {
+          pkg: {
+            name: "test-package",
+          },
+        },
+      },
+    ],
+  });
+
+  testValid("validates claim with scope", {
+    assertions: [
+      {
+        issuer: "test",
+        issuerSpecificID: "1",
+        claim: {
+          type: "dispute",
+          scope: ["pkg.range", "criticality"],
+          comment: "Disputing specific fields"
+        },
+        subject: {
+          pkg: {
+            name: "test-package",
+            range: "1.0.0"
           },
         },
       },

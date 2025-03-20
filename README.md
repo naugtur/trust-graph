@@ -38,7 +38,13 @@ The way `subject` is designed it can be used to represent the information we'd l
 
 Endpoints can be queried to return assertions about a subject. That enables organizations with large databases of vulnerability information to publish their assertions and have them be consumed by the trust graph without having to host a gigabyte JSON file that could overwhelm client apps.
 
-## Implementation
+## What's missing
+
+- weights to represent how much you trust the peers listed
+- a way to assert opinions about other humans (not what I want to encourage, but could be added)
+  - a dispute claim with subject containing only the `assertion.issuer` field could be considered a negative opinion about all assertions by an issuer if that's needed for countering bad actors.
+
+# Implementation
 
 ### Hosting
 

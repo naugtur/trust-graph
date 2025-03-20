@@ -3,8 +3,10 @@
         {
             "issuer": "@openssf/i_trust",
             "issuerSpecificID": "sc-2023-05-15-001",
-            "claim": 1,
-            "comment": "Package has good security practices",
+            "claim": {
+                "type": "endorse",
+                "comment": "Package has good security practices"
+            },
             "subject": {
                 "pkg": {
                     "name": "express",
@@ -15,8 +17,10 @@
         {
             "issuer": "@express/i_trust",
             "issuerSpecificID": "1",
-            "claim": -1,
-            "comment": "vulnerability in lodash as used by express is not affecting it",
+            "claim": {
+                "type": "dispute",
+                "comment": "vulnerability in lodash as used by express is not affecting it"
+            },
             "subject": {
                 "dependency": {
                     "dependent": {
@@ -36,8 +40,10 @@
         {
             "issuer": "@npmjs/i_trust",
             "issuerSpecificID": "npm-audit-2023-06-01-002",
-            "claim": -1,
-            "comment": "Disputing the assertion",
+            "claim": {
+                "type": "dispute",
+                "comment": "Disputing the assertion"
+            },
             "subject": {
                 "assertion": {
                     "issuer": "@openssf/i_trust",
@@ -48,8 +54,10 @@
         {
             "issuer": "@express/i_trust",
             "issuerSpecificID": "1",
-            "claim": -1,
-            "comment": "vulnerability in lodash as used by express is not affecting it",
+            "claim": {
+                "type": "dispute",
+                "comment": "vulnerability in lodash as used by express is not affecting it"
+            },
             "subject": {
                 "pkg": {
                     "name": "lodash",

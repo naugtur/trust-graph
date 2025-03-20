@@ -20,7 +20,8 @@
                     "type": "string"
                 },
                 "issuerSpecificID": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "An identifier that's unique in the scope of the issuer. The issuer+issuerSpecificID pair should uniquely identify an assertion"
                 }
             },
             "required": [
@@ -32,25 +33,49 @@
             "type": "object",
             "properties": {
                 "claim": {
-                    "type": "integer"
-                },
-                "comment": {
-                    "type": "string"
+                    "$ref": "#/definitions/claim"
                 },
                 "subject": {
                     "$ref": "#/definitions/subject"
                 }
             },
             "allOf": [
-                { "$ref": "#/definitions/issuerIdentity" }
+                {
+                    "$ref": "#/definitions/issuerIdentity"
+                }
             ],
             "required": [
                 "claim",
                 "subject"
             ]
         },
+        "claim": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "endorse",
+                        "dispute",
+                        "neutral"
+                    ]
+                },
+                "scope": {
+                    "type": "array",
+                    "description": "A list of fields in the subject that the claim is about (optional). Can be used to challenge just the criticality score or pkg.range of another report."
+                },
+                "comment": {
+                    "type": "string",
+                    "description": "A human readable explanation of the claim. Can contain recommendations, especially important if type == neutral"
+                }
+            },
+            "required": [
+                "type"
+            ]
+        },
         "subject": {
             "type": "object",
+            "description": "The specific aspect of the world the assertion is about. Assertions can be searched and matched by subject. Fields are compared for identity when present with the excepton of items consisting of 'name' and 'range' - where range is compared using semver intersection.",
             "anyOf": [
                 {
                     "$ref": "#/definitions/pkgSubject"
@@ -64,7 +89,8 @@
                 {
                     "$ref": "#/definitions/assertionSubject"
                 }
-            ]
+            ],
+            "additionalProperties": true
         },
         "pkgSubject": {
             "type": "object",
@@ -146,7 +172,9 @@
                 "assertion": {
                     "type": "object",
                     "allOf": [
-                        { "$ref": "#/definitions/issuerIdentity" }
+                        {
+                            "$ref": "#/definitions/issuerIdentity"
+                        }
                     ]
                 }
             },

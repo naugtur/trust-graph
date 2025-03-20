@@ -15,7 +15,7 @@
         {
             "issuer": "@express/i_trust",
             "issuerSpecificID": "1",
-            "claim": -1,
+            "claim": -1,//could split into confidence+dispute/endorse
             "comment": "vulnerability in lodash as used by express is not affecting it",
             "subject": {
                 "dependency": {
@@ -49,8 +49,24 @@
         {
             "issuer": "@express/i_trust",
             "issuerSpecificID": "1",
-            "claim": -1, //could split into confidence+dispute/endorse
-            "comment": "vulnerability in lodash as used by express is not affecting it",
+            "claim": {
+                type: "dispute", // dispute, endorse, -1 +1
+                //optionally narrow the claim down to specific fields
+                "comment": "vulnerability in lodash as used by express is not affecting it",
+                scope: ["pkg.range", "criticality"]
+                // can't decide on the name
+                // properties: ["pkg.range"]
+                // specifics: ["criticality"]
+                // target: ["flaw", "criticality"]
+                // aspects: ["flaw", "criticality"] 
+                // fields: ["flaw", "criticality"]
+                // attributes: ["flaw", "criticality"]
+                // concerns: ["flaw", "criticality"]
+                // components: ["flaw", "criticality"]
+                // elements: ["flaw", "criticality"]
+                // subset: ["flaw", "criticality"]
+            },
+            
             "subject": {
                 "pkg": {
                     "name": "lodash",
@@ -59,7 +75,9 @@
                 "flaw": {
                     "ghsa": "GHSA-p6mc-m468-83gw",
                     "url": "https://github.com/advisories/GHSA-p6mc-m468-83gw"
-                }
+                },
+                "criticality": "high"
+                // recommendation: ignore, update, 
                 // criticality could also go here or on the top level depending on whether we want to use it to identify or claim 
             }
         }
