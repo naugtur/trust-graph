@@ -3,8 +3,8 @@ graph TD
     naugtur --> olivia
     naugtur --> chr15
     naugtur --> 3th4n
-    3th4n --> attacker
     3th4n --> d4v1d
+    3th4n --> sarah
     zoe --> lisa
     zoe --> tom
     k3v1n --> emma
@@ -23,8 +23,10 @@ graph TD
     rachel --> snyk
     tom --> n4t4l13
     tom --> k3v1n
+    lisa --> attacker
     lisa --> chr15
     lisa --> sam
+    alex --> snyk
     alex --> d4v1d
     alex --> olivia
     emma --> tom

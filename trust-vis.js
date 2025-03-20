@@ -2,7 +2,7 @@ const { writeFileSync } = require("fs");
 const path = require("path");
 const stringify = require("json-stable-stringify");
 
-const { processTrustGraph } = require("./trust-computer");
+const { processTrustGraph } = require("./src/trust-computer");
 
 function scale(score) {
   return Math.round(12 + 7 * Math.log10(1 + 60 * score));

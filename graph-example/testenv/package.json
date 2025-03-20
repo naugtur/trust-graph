@@ -5,7 +5,8 @@
   "license": "ISC",
   "description": "",
   "scripts": {
-    "query-assertions": "npm query"
+    "clean-install": "rm package-lock.json && rm -fr ./node_modules && npm i",
+    "query-assertions": "npm query [assertions]"
   },
   "dependencies": {
     "@naugtur/i_trust": "latest",
