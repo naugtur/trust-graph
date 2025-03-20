@@ -1,7 +1,15 @@
-const { execSync } = require("child_process");
-const { readFileSync, writeFileSync } = require("fs");
+/**
+ * @typedef {Object.<string, TrustNode>} Trust
+ *
+ * @typedef {Object} TrustNode
+ * @property {number} score - The accumulated trust score for this node
+ * @property {Object} assertions - The assertions from the package.json file
+ * @property {string[]} via - Array of strings showing the trust paths and scores
+ * @property {string[]} dependencies - Array of trusted dependencies
+ */
+
+const { readFileSync } = require("fs");
 const path = require("path");
-const stringify = require("json-stable-stringify");
 
 function getPackageJson(packageName) {
   try {
@@ -69,83 +77,46 @@ function computeTrust({
   return next;
 }
 
+/**
+ *
+ * @param {string} packageJsonPath - Path to the package.json file to process
+ * @returns { trust: Trust, stats: { count: number, skip: number } }
+ */
 function processTrustGraph(packageJsonPath = "package.json") {
   const packageJson = JSON.parse(
     readFileSync(packageJsonPath, { encoding: "utf-8" })
   );
 
   const result = {};
-  const next = [{ dependencies: getValidDeps(packageJson), result, parentTrust: 1 }];
-  const maxComputations = 1000;
+  const next = [
+    { dependencies: getValidDeps(packageJson), result, parentTrust: 1 },
+  ];
+  const minMeaningfulTrust = 0.01;
   let count = 0;
+  let skip = 0;
 
-  while (next.length > 0 && count < maxComputations) {
+  while (next.length > 0) {
     count++;
     const current = next.shift();
     const nextBatch = computeTrust(current);
-    // Avoid processing trust scores that even if they accumulated would still be meaningless
-    if (current.parentTrust > 0.1 / maxComputations) {
+    // Avoid processing trust scores that even if they accumulated, wouldn't make a difference.
+    // This is the most proportional and fair way to limit the depth of the trust computation in a graph where cycles are expected to be common and the number of trusted peers in each node may vary greatly.
+    if (current.parentTrust > minMeaningfulTrust / 100) {
       next.push(...nextBatch);
     } else {
-      process.stdout.write(".");
+      skip++;
     }
   }
-  return result;
+  return {
+    trust: result,
+    stats: {
+      count,
+      skip,
+    },
+  };
 }
 
-function scale(score) {
-  return Math.round(12 + 7 * Math.log10(1 + 60 * score));
-}
-function aggregate(values) {
-  const self = values.filter((value) => value === "X").length;
-  const paths = values.filter((value) => value !== "X");
-  const sum = paths
-    .reduce((acc, value) => acc + parseFloat(value), 0)
-    .toFixed(3);
-  return `" score:${sum}, <br> paths:${paths.length}, <br> X:${self}"`;
-}
-
-function main() {
-  const result = processTrustGraph(path.join(process.cwd(), "package.json"));
-
-  writeFileSync("computed_trust.json", stringify(result, { space: 2 }));
-
-  const mermaid = ["graph TD"];
-  const nodeIds = Object.keys(result);
-  const edges = {};
-  for (const [node, data] of Object.entries(result)) {
-    mermaid.push(
-      `  ${nodeIds.indexOf(node)}["**${data.score.toFixed(3)}**<br>${node}"]`
-    );
-
-    for (const edge of data.via) {
-      const [path, value] = edge.split(":");
-      const source = path.split(">").slice(-1)[0];
-      if (source) {
-        const edgeId = `${nodeIds.indexOf(source)}-${nodeIds.indexOf(node)}`;
-        if (!edges[edgeId]) {
-          edges[edgeId] = [];
-        }
-        edges[edgeId].push(
-          typeof value === "number" ? parseFloat(value).toFixed(3) : value
-        );
-      }
-    }
-
-    mermaid.push(
-      `style ${nodeIds.indexOf(node)} font-size:${scale(data.score)}px;`
-    );
-  }
-
-  for (const [edge, values] of Object.entries(edges)) {
-    const [source, target] = edge.split("-");
-    mermaid.push(`  ${source} -->|${aggregate(values)}| ${target}`);
-  }
-
-  writeFileSync(
-    "computed_trust.md",
-    "\n```mermaid\n" + mermaid.join("\n") + "\n```"
-  );
-}
-
-main();
+module.exports = {
+  processTrustGraph,
+  computeTrust,
+};

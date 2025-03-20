@@ -1,5 +1,5 @@
 {
-    "@attacker/i_trust": { "dependencies": ["@attacker/i_trust", "@attacker1/i_trust"] },
+    "@attacker/i_trust": { "dependencies": ["@attacker/i_trust", "@attackerDoS/i_trust", "@attacker1/i_trust"] },
     "@attacker1/i_trust": { "dependencies": ["@attacker/i_trust", "@attacker2/i_trust"] },
     "@attacker2/i_trust": { "dependencies": ["@attacker/i_trust", "@attacker3/i_trust"] },
     "@attacker3/i_trust": { "dependencies": ["@attacker/i_trust", "@attacker4/i_trust"] },
@@ -10,6 +10,7 @@
     "@attacker8/i_trust": { "dependencies": ["@attacker/i_trust", "@attacker9/i_trust"] },
     "@attacker9/i_trust": { "dependencies": ["@attacker/i_trust", "@attacker10/i_trust"] },
     "@attacker10/i_trust": { "dependencies": ["@attacker/i_trust"] },
+    "@attackerDoS/i_trust": { "dependencies": ["@attacker/i_trust", "@attacker1/i_trust", "@attacker2/i_trust", "@attacker3/i_trust", "@attacker4/i_trust", "@attacker5/i_trust", "@attacker6/i_trust", "@attacker7/i_trust", "@attacker8/i_trust", "@attacker9/i_trust", "@attacker10/i_trust"] },
     "@snyk/i_trust": { "dependencies": ["@openssf/i_trust"] },
     "@openssf/i_trust": { "dependencies": [] },
     "@socket/i_trust": { "dependencies": ["@openssf/i_trust"] },

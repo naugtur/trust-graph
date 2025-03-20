@@ -39,6 +39,17 @@ graph TD
     sarah --> john
     socket --> openssf
     snyk --> openssf
+    attackerDoS --> attacker
+    attackerDoS --> attacker1
+    attackerDoS --> attacker2
+    attackerDoS --> attacker3
+    attackerDoS --> attacker4
+    attackerDoS --> attacker5
+    attackerDoS --> attacker6
+    attackerDoS --> attacker7
+    attackerDoS --> attacker8
+    attackerDoS --> attacker9
+    attackerDoS --> attacker10
     attacker10 --> attacker
     attacker9 --> attacker
     attacker9 --> attacker10
@@ -59,5 +70,6 @@ graph TD
     attacker1 --> attacker
     attacker1 --> attacker2
     attacker --> attacker
+    attacker --> attackerDoS
     attacker --> attacker1
 ```
