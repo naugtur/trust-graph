@@ -40,6 +40,7 @@ Endpoints can be queried to return assertions about a subject. That enables orga
 
 ## What's missing
 
+- means to aggregate assertions across the graph nodes to avoid fetching them individually after computing the local graph. It's the only limitation I find impactful and would like to solve with some checksum or signatures.
 - weights to represent how much you trust the peers listed
 - a way to assert opinions about other humans (not what I want to encourage, but could be added)
   - a dispute claim with subject containing only the `assertion.issuer` field could be considered a negative opinion about all assertions by an issuer if that's needed for countering bad actors.
