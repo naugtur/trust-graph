@@ -25,7 +25,8 @@
       },
       "subject": {
         "assertion":{
-          "issuer": "@attacker/i_trust"
+          "issuer": "@attacker/i_trust",
+          "issuerSpecificID": "meta-dispute-d4v1d"
         }
       }
     }
