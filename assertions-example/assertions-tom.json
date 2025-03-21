@@ -8,6 +8,9 @@
         "comment": "The CWE-1333 is not something we should worry about"
       },
       "subject": {
+        "pkg":{
+          "range": "*"
+        },
         "flaw": {
           "cwe": "CWE-1333"
         }

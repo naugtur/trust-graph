@@ -4,12 +4,16 @@
       "issuer": "@chr15/i_trust",
       "issuerSpecificID": "1",
       "claim": {
-        "type": "dispute",
-        "comment": "The advisory GHSA-c2qf-rxjj-qqgw overstates the severity of the issue"
+        "type": "endorse",
+        "comment": "This is some scary stuff m8"
       },
       "subject": {
+        "pkg": {
+          "name": "semver",
+          "range": "<5.7.2"
+        },
         "flaw": {
-          "ghsa": "GHSA-c2qf-rxjj-qqgw"
+          "cwe": "CWE-1333"
         }
       }
     }
