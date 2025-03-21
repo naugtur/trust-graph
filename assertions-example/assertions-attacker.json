@@ -1,0 +1,104 @@
+{
+  "assertions": [
+    {
+      "issuer": "@attacker/i_trust",
+      "issuerSpecificID": "meta-dispute-tom",
+      "claim": {
+        "type": "dispute",
+        "comment": "Tom's assessment of CWE-1333 is based on incomplete information"
+      },
+      "subject": {
+        "assertion": {
+          "issuer": "@tom/i_trust",
+          "issuerSpecificID": "semver-001"
+        }
+      }
+    },
+    {
+      "issuer": "@attacker/i_trust",
+      "issuerSpecificID": "meta-dispute-rachel",
+      "claim": {
+        "type": "dispute",
+        "comment": "Rachel's analysis fails to consider certain edge cases in semver"
+      },
+      "subject": {
+        "assertion": {
+          "issuer": "@rachel/i_trust",
+          "issuerSpecificID": "semver-vuln-01"
+        }
+      }
+    },
+    {
+      "issuer": "@attacker/i_trust",
+      "issuerSpecificID": "meta-dispute-d4v1d",
+      "claim": {
+        "type": "dispute",
+        "comment": "D4v1d's version range assessment is too narrow"
+      },
+      "subject": {
+        "assertion": {
+          "issuer": "@d4v1d/i_trust",
+          "issuerSpecificID": "semver-cwe1333-dispute"
+        }
+      }
+    },
+    {
+      "issuer": "@olivia/i_trust",
+      "issuerSpecificID": "meta-dispute-olivia",
+      "claim": {
+        "type": "endorse",
+        "comment": "pretend to be olivia"
+      },
+      "subject": {
+        "pkg": {
+          "name": "semver"
+        },
+        "flaw": {
+          "ghsa": "GHSA-c2qf-rxjj-qqgw"
+        }
+      }
+    },
+    {
+      "issuer": "@attacker/i_trust",
+      "issuerSpecificID": "meta-dispute-chr15",
+      "claim": {
+        "type": "dispute",
+        "comment": "Chr15's assessment of the advisory severity is subjective and not based on standard metrics"
+      },
+      "subject": {
+        "assertion": {
+          "issuer": "@chr15/i_trust",
+          "issuerSpecificID": "semver-cwe1333-analysis"
+        }
+      }
+    },
+    {
+      "issuer": "@attacker/i_trust",
+      "issuerSpecificID": "meta-dispute-sam",
+      "claim": {
+        "type": "dispute",
+        "comment": "Sam's claim about the limited scope of the vulnerability is not supported by evidence"
+      },
+      "subject": {
+        "assertion": {
+          "issuer": "@sam/i_trust",
+          "issuerSpecificID": "semver-vulnerability-scope"
+        }
+      }
+    },
+    {
+      "issuer": "@attacker/i_trust",
+      "issuerSpecificID": "meta-dispute-n4t4l13",
+      "claim": {
+        "type": "dispute",
+        "comment": "N4t4l13's assessment of the vulnerability's impact is overly optimistic"
+      },
+      "subject": {
+        "assertion": {
+          "issuer": "@n4t4l13/i_trust",
+          "issuerSpecificID": "semver-cwe1333-impact"
+        }
+      }
+    }
+  ]
+}

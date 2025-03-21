@@ -1,0 +1,20 @@
+{
+  "assertions": [
+    {
+      "issuer": "@sam/i_trust",
+      "issuerSpecificID": "semver-vulnerability-scope",
+      "claim": {
+        "type": "dispute",
+        "comment": "There's no point in worrying about the ReDoS in all semver versions"
+      },
+      "subject": {
+        "pkg": {
+          "name": "semver"
+        },
+        "flaw": {
+          "cwe": "CWE-1333"
+        }
+      }
+    }
+  ]
+}

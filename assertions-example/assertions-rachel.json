@@ -1,0 +1,21 @@
+{
+  "assertions": [
+    {
+      "issuer": "@rachel/i_trust",
+      "issuerSpecificID": "semver-vuln-01",
+      "claim": {
+        "type": "dispute",
+        "comment": "Our analysis shows that there's no practical risk involved in using semver"
+      },
+      "subject": {
+        "pkg": {
+          "name": "semver"
+        },
+        "flaw": {
+          "ghsa": "GHSA-c2qf-rxjj-qqgw",
+          "url": "https://github.com/advisories/GHSA-c2qf-rxjj-qqgw"
+        }
+      }
+    }
+  ]
+}

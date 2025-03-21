@@ -1,0 +1,17 @@
+{
+  "assertions": [
+    {
+      "issuer": "@chr15/i_trust",
+      "issuerSpecificID": "semver-cwe1333-analysis",
+      "claim": {
+        "type": "dispute",
+        "comment": "The advisory GHSA-c2qf-rxjj-qqgw overstates the severity of the issue"
+      },
+      "subject": {
+        "flaw": {
+          "ghsa": "GHSA-c2qf-rxjj-qqgw"
+        }
+      }
+    }
+  ]
+}

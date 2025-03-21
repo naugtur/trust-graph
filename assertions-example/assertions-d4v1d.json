@@ -1,0 +1,21 @@
+{
+  "assertions": [
+    {
+      "issuer": "@d4v1d/i_trust",
+      "issuerSpecificID": "semver-cwe1333-dispute",
+      "claim": {
+        "type": "dispute",
+        "comment": "It's a ReDoS in a semver matcher. Seriouslt?"
+      },
+      "subject": {
+        "pkg": {
+          "name": "semver",
+          "range": "<5.7.2"
+        },
+        "flaw": {
+          "ghsa": "GHSA-c2qf-rxjj-qqgw"
+        }
+      }
+    }
+  ]
+}

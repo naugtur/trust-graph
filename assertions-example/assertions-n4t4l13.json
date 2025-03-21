@@ -1,0 +1,21 @@
+{
+  "assertions": [
+    {
+      "issuer": "@n4t4l13/i_trust",
+      "issuerSpecificID": "semver-cwe1333-impact",
+      "claim": {
+        "type": "dispute",
+        "comment": "The impact of CWE-1333 on semver is minimal and does not warrant the current advisory"
+      },
+      "subject": {
+        "pkg": {
+          "name": "semver",
+          "range": "<5.7.2"
+        },
+        "flaw": {
+          "cwe": "CWE-1333"
+        }
+      }
+    }
+  ]
+}

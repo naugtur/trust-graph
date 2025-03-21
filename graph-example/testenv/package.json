@@ -6,10 +6,11 @@
   "description": "",
   "scripts": {
     "clean-install": "rm package-lock.json && rm -fr ./node_modules && npm i",
-    "query-assertions": "npm query [assertions]"
+    "query-assertions": "npm query [name$=\"/i_trust\"] | jq '[.[] | {name, assertion}]'"
   },
   "dependencies": {
     "@naugtur/i_trust": "latest",
-    "not-really-a-package": "^1.0.0"
+    "not-really-a-package": "^1.0.0",
+    "semver": "5.7.1"
   }
 }
