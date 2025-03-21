@@ -1,10 +1,9 @@
-const { processTrustGraph } = require('./trust-computer');
-const matchAssertions = require('./assertion-matcher');
+// @ts-check
+const { matchAssertions, getAssertionId } = require("./assertion-matcher");
 
 /**
  * @typedef {Object} CommunityTrust
  * @property {Array<Object>} assertions - List of assertions with their trust scores
- * @property {Object} stats - Statistics about the trust computation
  */
 
 /**
@@ -19,7 +18,7 @@ const matchAssertions = require('./assertion-matcher');
 
 /**
  * @typedef {Object} AssertionDebug
- * @property {string} id - Unique identifier (issuer + issuerSpecificId)
+ * @property {string} id - Unique identifier (issuer + issuerSpecificID)
  * @property {number} score - Score contribution
  * @property {string} type - Assertion type
  * @property {number} trust - Trust score
@@ -35,12 +34,11 @@ async function fetchJson(url) {
 }
 
 /**
- * Processes trust graph and collects assertions from trusted nodes
- * @param {string} packageJsonPath - Path to the root package.json
+ * Collects assertions from trusted nodes in a trust graph
+ * @param {Object} trust - Processed trust graph
  * @returns {Promise<CommunityTrust>}
  */
-async function getAssertionsFromCommunity(packageJsonPath = 'package.json') {
-  const { trust, stats } = processTrustGraph(packageJsonPath);
+async function getAssertionsFromTrust(trust) {
   const fetchPromises = [];
 
   // Prepare all fetch operations
@@ -49,20 +47,23 @@ async function getAssertionsFromCommunity(packageJsonPath = 'package.json') {
 
     fetchPromises.push(
       fetchJson(node.assertions.url)
-        .then(assertionsData => {
+        .then(({ assertions }) => {
           // Validate that assertions come from the correct issuer
-          const ownAssertions = assertionsData.filter(assertion =>
-            assertion.issuer === nodeId
+          const ownAssertions = assertions.filter(
+            (assertion) => assertion.issuer === nodeId
           );
 
           // Sprinkle some trust scores in.
-          return ownAssertions.map(assertion => ({
+          return ownAssertions.map((assertion) => ({
             ...assertion,
             trust: node.score,
           }));
         })
-        .catch(error => {
-          console.warn(`Failed to fetch assertions from ${node.assertions.url}:`, error.message);
+        .catch((error) => {
+          console.warn(
+            `Failed to fetch assertions from ${node.assertions.url}:`,
+            error
+          );
           return []; // Return empty array for failed fetches
         })
     );
@@ -73,17 +74,7 @@ async function getAssertionsFromCommunity(packageJsonPath = 'package.json') {
 
   return {
     assertions: assertionsWithTrust,
-    stats
   };
-}
-
-/**
- * Create a unique ID for an assertion
- * @param {Object} assertion - The assertion
- * @returns {string} Unique ID
- */
-function getAssertionId(assertion) {
-  return `${assertion.issuer}-${assertion.issuerSpecificId}`;
 }
 
 /**
@@ -91,49 +82,69 @@ function getAssertionId(assertion) {
  * @param {Object} assertion - Assertion to analyze
  * @param {Array} allAssertions - Complete set of assertions
  * @param {Set} visited - Set of already visited assertion IDs to prevent cycles
- * @returns {Object} Object containing scores and debug info
  */
 function computeAssertionScores(assertion, allAssertions, visited = new Set()) {
   const assertionId = getAssertionId(assertion);
-  
+
   // Prevent infinite recursion by tracking visited assertions
   if (visited.has(assertionId)) {
-    return { 
+    return {
       scores: [],
-      debug: null 
+      debug: null,
     };
   }
-  
+
   // Mark this assertion as visited
   visited.add(assertionId);
-  
+
   // Base score from the assertion itself
-  const baseScore = assertion.type === 'dispute' ? -1 : 1;
-  const weightedScore = baseScore * assertion.trust;
-  
+  const direction = assertion.claim.type === "dispute" ? -1 : 1;
+
   // Create debug object
   const debug = {
     id: assertionId,
-    score: weightedScore,
-    type: assertion.type,
-    trust: assertion.trust,
-    children: []
+    direction,
+    children: [],
   };
-  
+
   // Initial scores array
-  const scores = [weightedScore];
+  const scores = [assertion.trust];
 
   // Look for meta-assertions (assertions about this assertion)
-  const metaMatches = matchAssertions({
-    issuer: assertion.issuer,
-    issuerSpecificId: assertion.issuerSpecificId
-  }, allAssertions);
+  const metaMatches = matchAssertions(
+    {
+      assertion: {
+        issuer: assertion.issuer,
+        issuerSpecificID: assertion.issuerSpecificID,
+      },
+    },
+    allAssertions
+  );
+  // if (options.allowBlanketIssuerAssertions) {
+  //   const vagueMetaMatches = matchAssertions(
+  //     {
+  //       assertion: {
+  //         issuer: assertion.issuer,
+  //         issuerSpecificID: null,
+  //       },
+  //     },
+  //     allAssertions
+  //   );
+  //   metaMatches.push(...vagueMetaMatches);
+  // }
 
   if (metaMatches.length > 0) {
     // Recursively compute scores for meta-assertions
-    metaMatches.forEach(meta => {
-      const metaResult = computeAssertionScores(meta, allAssertions, new Set(visited));
-      
+    metaMatches.forEach((meta) => {
+      // Clone the visited set to avoid cross-path contamination - FIX #3
+      const newVisited = new Set(visited);
+
+      const metaResult = computeAssertionScores(
+        meta,
+        allAssertions,
+        newVisited
+      );
+
       if (metaResult.debug) {
         debug.children.push(metaResult.debug);
         scores.push(...metaResult.scores);
@@ -141,9 +152,16 @@ function computeAssertionScores(assertion, allAssertions, visited = new Set()) {
     });
   }
 
+  const scoresForClaim = scores.flatMap((score) => score * direction);
+
+  debug.scores = scoresForClaim;
+  debug.total = scoresForClaim
+    .reduce((sum, score) => sum + score, 0)
+    .toFixed(3);
+
   return {
-    scores,
-    debug
+    scores: scoresForClaim,
+    debug,
   };
 }
 
@@ -155,122 +173,42 @@ function computeAssertionScores(assertion, allAssertions, visited = new Set()) {
  */
 function getCommunitySentiment(subject, assertions) {
   const matches = matchAssertions(subject, assertions);
-  
-  // Sort matches by trust score
-  const sortedMatches = matches.sort((a, b) => b.trust - a.trust);
 
   // Compute scores for all matches including their meta-assertions
-  const computationResults = sortedMatches.map(match => 
+  const computationResults = matches.map((match) =>
     computeAssertionScores(match, assertions)
   );
-  
-  const allScores = computationResults.flatMap(result => result.scores);
-  const debugTree = computationResults.map(result => result.debug);
+
+  const allScores = computationResults.flatMap((result) => result.scores);
 
   // Count endorsements and disputes
-  const endorsements = sortedMatches.filter(m => m.type === 'endorsement').length;
-  const disputes = sortedMatches.filter(m => m.type === 'dispute').length;
+  const endorsements = matches.filter((m) => m.claim.type === "endorse").length;
+  const disputes = matches.filter((m) => m.claim.type === "dispute").length;
 
   // Calculate total sentiment
   const total = allScores.reduce((sum, score) => sum + score, 0);
 
+  const debugTree = [
+    {
+      id: "root",
+      total: total.toFixed(3),
+      scores: allScores,
+      direction: total >= 0 ? 1 : -1,
+      children: computationResults.map((result) => result.debug),
+    },
+  ];
+
   return {
-    matches: sortedMatches,
+    matches: matches.sort((a, b) => b.trust - a.trust),
     total,
     endorsements,
     disputes,
     scores: allScores,
     debug: debugTree,
-    // Include visualization function that captures the current state
-    generateVisualization: () => generateDebugVisualization(debugTree, assertions)
   };
 }
 
-/**
- * Generate a Mermaid graph and documentation from debug data
- * @param {Array<AssertionDebug>} debugData - Debug data from sentiment analysis
- * @param {Array} allAssertions - All assertion objects
- * @returns {string} Markdown with Mermaid graph and assertion details
- */
-function generateDebugVisualization(debugData, allAssertions) {
-  // Store all assertions for documentation
-  const assertionNodes = new Map();
-  const assertionObjects = new Map();
-  
-  // Find original assertion objects by ID
-  allAssertions.forEach(assertion => {
-    const id = getAssertionId(assertion);
-    assertionObjects.set(id, assertion);
-  });
-  
-  // Process debug tree to collect all assertions
-  function collectAssertions(node) {
-    if (!node) return;
-    assertionNodes.set(node.id, node);
-    
-    if (node.children && node.children.length > 0) {
-      node.children.forEach(collectAssertions);
-    }
-  }
-  
-  debugData.forEach(collectAssertions);
-  
-  // Generate Mermaid graph definition
-  let mermaidGraph = '```mermaid\ngraph TD\n';
-  
-  // Map node connections
-  function addNodeConnections(node, parentId = null) {
-    if (!node) return;
-    
-    const nodeSign = node.score >= 0 ? '👍' : '👎';
-    const scoreValue = Math.abs(node.score).toFixed(2);
-    
-    // Add this node
-    mermaidGraph += `  ${node.id}["${nodeSign} <a href='#assertion-${node.id}' >${node.id}</a> (${scoreValue})"]`;
-    
-    // Connect to parent if any
-    if (parentId) {
-      mermaidGraph += `  ${parentId} --> ${node.id}\n`;
-    }
-    
-    // Process children
-    if (node.children && node.children.length > 0) {
-      node.children.forEach(child => {
-        addNodeConnections(child, node.id);
-      });
-    }
-  }
-  
-  // Start with top-level nodes
-  debugData.forEach(rootNode => {
-    addNodeConnections(rootNode);
-  });
-  
-  mermaidGraph += '```\n\n';
-  
-  // Generate documentation for each assertion
-  mermaidGraph += '## Assertion Details\n\n';
-  
-  assertionNodes.forEach((node, id) => {
-    mermaidGraph += `### <a id="assertion-${id}"></a>Assertion: ${id}\n\n`;
-    mermaidGraph += `- **Weighted Score**: ${node.score.toFixed(4)}\n\n`;
-    
-    // Include the full assertion JSON
-    const originalAssertion = assertionObjects.get(id);
-    if (originalAssertion) {
-      mermaidGraph += "```json\n";
-      mermaidGraph += JSON.stringify(originalAssertion, null, 2);
-      mermaidGraph += "\n```\n\n";
-    } else {
-      mermaidGraph += "*Assertion details not available*\n\n";
-    }
-  });
-  
-  return mermaidGraph;
-}
-
 module.exports = {
-  getAssertionsFromCommunity,
+  getAssertionsFromTrust,
   getCommunitySentiment,
-  generateDebugVisualization
 };

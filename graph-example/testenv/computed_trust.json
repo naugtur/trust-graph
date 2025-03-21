@@ -199,6 +199,9 @@
     ]
   },
   "@attacker/i_trust": {
+    "assertions": {
+      "url": "https://raw.githubusercontent.com/naugtur/trust-graph/main/assertions-example/assertions-attacker.json"
+    },
     "dependencies": [
       "@attacker/i_trust",
       "@attackerDoS/i_trust",
@@ -1894,6 +1897,9 @@
     ]
   },
   "@chr15/i_trust": {
+    "assertions": {
+      "url": "https://raw.githubusercontent.com/naugtur/trust-graph/main/assertions-example/assertions-chr15.json"
+    },
     "dependencies": [
       "@k3v1n/i_trust",
       "@zoe/i_trust"
@@ -2021,6 +2027,9 @@
     ]
   },
   "@d4v1d/i_trust": {
+    "assertions": {
+      "url": "https://raw.githubusercontent.com/naugtur/trust-graph/main/assertions-example/assertions-d4v1d.json"
+    },
     "dependencies": [
       "@olivia/i_trust",
       "@chr15/i_trust"
@@ -2261,9 +2270,6 @@
     ]
   },
   "@john/i_trust": {
-    "assertions": {
-      "url": "https://raw.githubusercontent.com/naugtur/trust-graph/013ec2584e8b7c7e065c2f615cb87bb507c3a950/schema/example.json"
-    },
     "dependencies": [
       "@socket/i_trust",
       "@lisa/i_trust"
@@ -2766,6 +2772,9 @@
     ]
   },
   "@n4t4l13/i_trust": {
+    "assertions": {
+      "url": "https://raw.githubusercontent.com/naugtur/trust-graph/main/assertions-example/assertions-n4t4l13.json"
+    },
     "dependencies": [
       "@mike/i_trust",
       "@john/i_trust"
@@ -3313,6 +3322,9 @@
     ]
   },
   "@rachel/i_trust": {
+    "assertions": {
+      "url": "https://raw.githubusercontent.com/naugtur/trust-graph/main/assertions-example/assertions-rachel.json"
+    },
     "dependencies": [
       "@zoe/i_trust",
       "@snyk/i_trust"
@@ -3390,6 +3402,9 @@
     ]
   },
   "@sam/i_trust": {
+    "assertions": {
+      "url": "https://raw.githubusercontent.com/naugtur/trust-graph/main/assertions-example/assertions-sam.json"
+    },
     "dependencies": [
       "@3th4n/i_trust",
       "@sarah/i_trust"
@@ -3872,6 +3887,9 @@
     ]
   },
   "@tom/i_trust": {
+    "assertions": {
+      "url": "https://raw.githubusercontent.com/naugtur/trust-graph/main/assertions-example/assertions-tom.json"
+    },
     "dependencies": [
       "@n4t4l13/i_trust",
       "@k3v1n/i_trust"

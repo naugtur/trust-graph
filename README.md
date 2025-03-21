@@ -4,10 +4,20 @@ A way to create a distributed network of trust on which opinions (assertions) ca
 
 # Stuff to see here
 
-graph-example has tools to set up a local registry with a trust graph in it.
-graph-example/testenv is where we can fiddle with it
+- graph-example has tools to set up a local registry with a trust graph in it.
+- graph-example/testenv is where we can fiddle with it
+- assertions-example is where the assertions of various people are stored
 
-going to graph-example/testenv you can npm install the trust graph and run `node ../../trust-computer` on it
+- demo
+```sh
+cd graph-example
+npm install
+npm run start&
+
+cd testenv
+npm install
+node ../../demo.js
+```
 
 # Concepts and notes
 
@@ -43,7 +53,8 @@ Endpoints can be queried to return assertions about a subject. That enables orga
 - means to aggregate assertions across the graph nodes to avoid fetching them individually after computing the local graph. It's the only limitation I find impactful and would like to solve with some checksum or signatures.
 - weights to represent how much you trust the peers listed
 - a way to assert opinions about other humans (not what I want to encourage, but could be added)
-  - a dispute claim with subject containing only the `assertion.issuer` field could be considered a negative opinion about all assertions by an issuer if that's needed for countering bad actors.
+  - a dispute claim with subject containing only the `assertion.issuer` field could be considered a negative opinion about all assertions by an issuer if that's needed for countering bad actors.  
+  It's currently not allowed by the schema
 
 # Implementation
 
