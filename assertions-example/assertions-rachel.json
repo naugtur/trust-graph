@@ -2,7 +2,7 @@
   "assertions": [
     {
       "issuer": "@rachel/i_trust",
-      "issuerSpecificID": "semver-vuln-01",
+      "issuerSpecificID": "1",
       "claim": {
         "type": "dispute",
         "comment": "Our analysis shows that there's no practical risk involved in using semver"

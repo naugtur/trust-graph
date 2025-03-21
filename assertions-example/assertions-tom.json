@@ -2,7 +2,7 @@
   "assertions": [
     {
       "issuer": "@tom/i_trust",
-      "issuerSpecificID": "semver-001",
+      "issuerSpecificID": "1",
       "claim": {
         "type": "dispute",
         "comment": "The CWE-1333 is not something we should worry about"

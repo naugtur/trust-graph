@@ -2,7 +2,7 @@
   "assertions": [
     {
       "issuer": "@d4v1d/i_trust",
-      "issuerSpecificID": "semver-cwe1333-dispute",
+      "issuerSpecificID": "1",
       "claim": {
         "type": "dispute",
         "comment": "It's a ReDoS in a semver matcher. Seriouslt?"

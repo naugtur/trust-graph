@@ -2,7 +2,7 @@
   "assertions": [
     {
       "issuer": "@sam/i_trust",
-      "issuerSpecificID": "semver-vulnerability-scope",
+      "issuerSpecificID": "1",
       "claim": {
         "type": "dispute",
         "comment": "There's no point in worrying about the ReDoS in all semver versions"

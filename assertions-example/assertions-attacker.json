@@ -10,7 +10,7 @@
       "subject": {
         "assertion": {
           "issuer": "@tom/i_trust",
-          "issuerSpecificID": "semver-001"
+          "issuerSpecificID": "1"
         }
       }
     },
@@ -24,7 +24,7 @@
       "subject": {
         "assertion": {
           "issuer": "@rachel/i_trust",
-          "issuerSpecificID": "semver-vuln-01"
+          "issuerSpecificID": "1"
         }
       }
     },
@@ -38,7 +38,7 @@
       "subject": {
         "assertion": {
           "issuer": "@d4v1d/i_trust",
-          "issuerSpecificID": "semver-cwe1333-dispute"
+          "issuerSpecificID": "1"
         }
       }
     },
@@ -68,7 +68,7 @@
       "subject": {
         "assertion": {
           "issuer": "@chr15/i_trust",
-          "issuerSpecificID": "semver-cwe1333-analysis"
+          "issuerSpecificID": "1"
         }
       }
     },
@@ -82,7 +82,7 @@
       "subject": {
         "assertion": {
           "issuer": "@sam/i_trust",
-          "issuerSpecificID": "semver-vulnerability-scope"
+          "issuerSpecificID": "1"
         }
       }
     },
@@ -96,7 +96,7 @@
       "subject": {
         "assertion": {
           "issuer": "@n4t4l13/i_trust",
-          "issuerSpecificID": "semver-cwe1333-impact"
+          "issuerSpecificID": "1"
         }
       }
     }
