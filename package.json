@@ -2,7 +2,8 @@
   "name": "trust-graph",
   "version": "1.0.0",
   "scripts": {
-    "test": "node --test"
+    "test": "node --test",
+    "marp": "marp media/*.md --pdf --allow-local-files"
   },
   "keywords": [],
   "author": "",
@@ -10,11 +11,9 @@
   "description": "",
   "dependencies": {
     "ajv": "^8.17.1",
-    "json-stable-stringify": "^1.2.1",
-    "libnpmpack": "^9.0.1",
-    "libnpmpublish": "^11.0.0",
-    "npm-registry-fetch": "^18.0.2",
-    "pacote": "^21.0.0",
     "semver": "^7.7.1"
+  },
+  "devDependencies": {
+    "@marp-team/marp-cli": "^4.1.2"
   }
 }
