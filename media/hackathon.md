@@ -16,14 +16,6 @@ Enhancing Supply Chain Security with Community Trust
 
 ---
 
-# Our Team
-
-|![width:200px](https://github.com/naugtur.png)|![width:200px](https://github.com/leotm.png)|![width:200px](https://github.com/boneskull.png)|
-| -- | -- | -- |
-|Zb Tenerowicz | Leo Merinen | Chris Hiller|
-
----
-
 # Our Goal
 
 Create a distributed network of trust for sharing and consuming opinions on npm packages and their vulnerabilities.
