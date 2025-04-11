@@ -48,13 +48,19 @@ The way `subject` is designed it can be used to represent the information we'd l
 
 Endpoints can be queried to return assertions about a subject. That enables organizations with large databases of vulnerability information to publish their assertions and have them be consumed by the trust graph without having to host a gigabyte JSON file that could overwhelm client apps.
 
-## What's missing
+### Integrity
 
-- means to aggregate assertions across the graph nodes to avoid fetching them individually after computing the local graph. It's the only limitation I find impactful and would like to solve with some checksum or signatures.
-- weights to represent how much you trust the peers listed
-- a way to assert opinions about other humans (not what I want to encourage, but could be added)
-  - a dispute claim with subject containing only the `assertion.issuer` field could be considered a negative opinion about all assertions by an issuer if that's needed for countering bad actors.  
-  It's currently not allowed by the schema
+> TODO
+
+- use a hash of subject,claim and issuer as the identifier of the assertion to make assertions immutable and therefore the relationship with their disputes and endorsements - predictable.
+  - interesting observation: using hashes as IDs allows disputing an assertion from a specific issuer before they publish it.
+- use signing to verify authenticity of the assertions. 
+  - the trust package is hosted separately from the assertions, so the trust package should hold a public key for a signature of the assertions. Instead of signing the whole JSON, signing the hashes would suffice. A signature on the complete sorted list of hashes covers validating the list of assertions. Individual assertions would need to be signed for the purpose of aggregating them further. (is there a cryptographic mechanism allowing signing a structure that represents a set and can be asked set questions that's not individual signatures on each element? Would it be any better?)
+  - To allow rotating signing credentials assertions' signatures should be keyed on the matching public key in the JSON file (or server response) 
+- leverage the hashes and signatures to allow aggregators of assertions. A single database of assertions could be searched for relevant assertions and their validity verified against the trust graph. No need to always pull assertions from all the trusted parties. 
+  - risk of the aggregator censoring/silencing some opinions. 
+    - the aggregator would need to exist under the same trust graph
+    - multiple aggregators would keep eachother in check if one started returning incomplete results. 
 
 # Implementation
 
@@ -91,3 +97,12 @@ Only production dependencies are taken into account. That leaves room for distin
 - assertions found are weighted with the trust from the trust graph and their dispute/endorse claims totalled into a score.
 
 At this point the tool can either skip showing vulnerabilities that were disputed by the user's trust graph or provide context of the disputes and endorsements in the community.
+
+
+# What's missing
+
+- means to aggregate assertions across the graph nodes to avoid fetching them individually after computing the local graph. It's the only limitation I find impactful and would like to solve with some checksum or signatures. See "Integrity" section above.
+- weights to represent how much you trust the peers listed
+- a way to assert opinions about other humans (not what I want to encourage, but could be added)
+  - a dispute claim with subject containing only the `assertion.issuer` field could be considered a negative opinion about all assertions by an issuer if that's needed for countering bad actors.  
+  It's currently not allowed by the schema
